@@ -1,25 +1,26 @@
 # Contributing
 
-This repository is a public, forkable starting point for building a compounding organisation. It is not a general notes dump. Contribute only when the result makes the system easier to understand, fork, or use.
+This repository is a public, forkable starting point for building a foundational part of a compounding organisation: its knowledge engine. Contribute only when the result improves the repo's structure, operating rules, or reusable scaffolding.
 
 ## What this repository is for
 
 Contributions should strengthen one or more of these outcomes:
 
-1. Explain the thesis: organisations compound when research, decisions, work products, and outcomes improve the next cycle of work.
-2. Provide reusable assets: templates, operating principles, examples, and starter structures.
-3. Make research first-class: technology, market, and customer research should feed execution rather than sit beside it.
-4. Keep the repository easy to fork, trim, and adapt.
+1. Make the repository easier to understand, fork, and extend.
+2. Improve the repo's operating surface: skills, agent instructions, templates, examples, and structure.
+3. Clarify how the system is maintained and how new material should be shaped.
+4. Keep the repository easy to trim, adapt, and keep consistent over time.
 
 ## What belongs
 
 Good contributions are usually one of these:
 
-- narrative docs that clarify the thesis or how the system works
-- reusable templates or canvases that help teams run the method
-- research guides for technology, markets, or customers
-- worked examples that show how evidence becomes decisions, loops, or assets
-- small improvements to contributor or agent workflow that make the repository easier to maintain
+- updates to `README.md`, `AGENTS.md`, or other repo-level guidance
+- new or improved skills, agent descriptions, or workflow instructions
+- reusable templates, prompts, canvases, or contribution forms
+- worked examples that show how the repository should be structured or used
+- folder, naming, or placement conventions that make the vault easier to navigate
+- small automation, validation, or linting improvements that keep the repo consistent
 
 ## What does not belong
 
@@ -28,6 +29,7 @@ Do not use this repository for:
 - private notes, personal notes, or people profiles
 - raw transcripts, raw call notes, or unredacted source material
 - client-specific, employer-specific, or relationship-specific context
+- routine knowledge-note edits that do not change the repo's structure, workflows, or conventions
 - idea fragments that depend on private context to make sense
 - generic productivity advice or a broad digital garden of loosely related thoughts
 - speculative templates or examples that do not solve a clear problem in the repository
@@ -36,112 +38,73 @@ When in doubt, exclude first.
 
 ## Before opening an issue or PR
 
-1. Read the README and the relevant nearby documents.
-2. Check whether the change helps a future fork, not just this repository.
+1. Read the README, `AGENTS.md`, and the relevant nearby docs or skills.
+2. Check whether the change improves the repo's structure or maintainability, not just a single note.
 3. Keep the scope narrow. Small, coherent changes are preferred.
-4. If the change is large or adds a new content type, open an issue first.
+4. If the change adds a new file type, skill, agent pattern, or structural convention, open an issue first.
 
 ## Issues
 
 Use issues to propose:
 
-- a new template or example
-- a correction to the thesis or operating model
-- a gap in the research layer
-- a privacy or publishing concern
+- a new template, example, or workflow
+- a new skill or agent instruction pattern
+- a folder, naming, or placement convention
+- a repo-level automation or validation improvement
 - a structural improvement that keeps the repository more forkable
 
 Please include:
 
-- the problem to solve
-- who the contribution helps
-- why existing material is not enough
+- the structural problem to solve
+- who the change helps
+- why the current repo shape is not enough
 - the smallest useful change
 
 ## Pull requests
 
-PRs should be focused and explain the why clearly.
+All changes to this repository must be made through a pull request. PRs should be focused, explain the why clearly, and use the template below.
 
-Include in the PR description:
+## PR template
 
-1. **Problem** - what gap or weakness this change addresses
-2. **Why this belongs here** - how it improves the forkable system
-3. **Scope** - which files or folders changed
-4. **Evidence or source basis** - for research-oriented additions
-5. **Privacy check** - confirmation that no private or context-bound material was published
-6. **Verification** - what you checked before opening the PR
+```md
+## What?
+## Why?
+## How?
+## Testing?
+## Anything Else? (optional)
+```
+
+Use the template to describe the repo-structure impact clearly:
+
+1. **What?** - which structural files changed
+2. **Why?** - why the change improves the repo's workflows, templates, or maintainability
+3. **How?** - how the structure, links, instructions, or examples were updated
+4. **Testing?** - what you checked for consistency, formatting, links, placement, or behavior
+6. **Anything Else? (optional)** - follow-up work, context, or open questions
 
 Preferred PR characteristics:
 
 - one logical change per PR
 - concise writing and minimal duplication
 - no broad folder reshuffles without prior discussion
-- no large dumps of notes "for later sorting"
 
-## Editorial standards
+## Editing scope
 
-Write for reuse.
+This contribution guide is for changes that shape the repository itself.
 
-- Prefer direct language over internal shorthand.
-- Explain the method, not just the conclusion.
-- Keep templates short enough to use immediately.
-- Keep examples concrete enough to teach, but generic enough to fork.
-- Rewrite source material into public-safe, coherent documents; do not paste private vault notes verbatim.
-
-## Research contribution standards
-
-Research is a first-class workstream in this repository. That raises the quality bar.
-
-Every substantive research contribution should make these distinctions clear:
-
-- **Observation**: what was seen, with source or evidence
-- **Inference**: what it likely means
-- **Implication**: how it may change product, operating design, workflow, or strategy
-- **Confidence**: high / medium / low, or an equivalent explicit signal
-
-Expected practices:
-
-- Prefer public, linkable, reproducible sources.
-- Date claims that may age quickly.
-- Separate evidence from opinion.
-- Avoid hype language unless the evidence justifies it.
-- For customer material, redact or synthesize aggressively unless publication is clearly safe.
-
-## Standards for new assets, templates, and examples
-
-If you propose a new asset, template, or example, show:
-
-1. the recurring use case it supports
-2. why the current repository structure is insufficient without it
-3. where it belongs in the repository
-4. how a forking team would adapt it
-
-Quality bar:
-
-- **Templates** should be copyable and immediately usable.
-- **Examples** should demonstrate the method, not just present polished output.
-- **Assets** should encode a repeatable workflow or decision aid, not personal preference.
-
-## Privacy and publishing guardrails
-
-Do not contribute:
-
-- personal data
-- confidential or source-restricted information
-- private operating details from teams that did not agree to publication
-- notes whose usefulness depends on access to the original private vault
-
-If a contribution is derived from private source material, publish only the generalized method or insight, not the underlying sensitive context.
+- Use the normal knowledge workflows for day-to-day note creation and curation.
+- Use PRs here when the change affects structure, skills, agent instructions, examples, templates, or repo-level conventions.
+- If a note edit only changes content inside the knowledge base and does not alter the system around it, it probably does not belong in a repo-structure PR.
 
 ## File placement
 
 Use the repository structure deliberately:
 
-- `docs/` for narrative and explanatory documents
-- `assets/` for reusable templates, canvases, and operating tools
-- `research/` for research workflows and evidence-handling guidance
-- `examples/` for worked examples
-- `notes/` for a small, curated set of public concept or playbook notes
+- `docs/` for narrative and explanatory documents about how the system works
+- `.claude/skills/` for skills and their workflows
+- `examples/` for worked examples and reference patterns
+- `templates/` for reusable authoring or contribution templates
+- `Knowledge/` for structural conventions, folder guidance, and system-level reference pages
 
 If a contribution does not clearly fit one of those purposes, it probably does not belong yet.
 
