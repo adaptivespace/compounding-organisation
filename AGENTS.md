@@ -110,7 +110,6 @@ Detailed operational workflows are lazy-loaded from `.claude/skills/` instead of
 Available repository skills:
 
 - `/ingest <source>`: process material from `Research/` into curated notes in `Knowledge/`
-- `/query <question>`: answer from `Knowledge/` first, and optionally file reusable synthesis back into the vault
 - `/ask <question>`: answer directly from `Knowledge/` without changing files
 - `/lint [scope]`: perform low-risk maintenance on `Knowledge/` and, when requested, `Outputs/`
 - `/output <request>`: create a polished guide, memo, or report in `Outputs/`

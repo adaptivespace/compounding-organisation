@@ -47,9 +47,9 @@ In practice, this means an agent can help with specific jobs such as:
 Current repository skills:
 
 - `ingest/` - research ingestion and transformation into durable knowledge
-- `log-decision/` - structured decision capture and supersession handling
 - `ask/` - direct, read-only answers from the curated vault
-- `query/` - knowledge-base-first answers that can also update reusable notes
+- `output/` - knowledge-base-first memos, analyses, guides, or reports in `Outputs/`
+- `log-decision/` - structured decision capture and supersession handling
 - `lint/` - low-risk maintenance of the knowledge base to ensure links are not broken
 
 Available repository workflows include:
@@ -155,7 +155,7 @@ If a newer decision supersedes an older one, the older decision should be marked
 
 Start here:
 
-1. Read `AGENTS.md`
+1. Read `README.md`
 2. Read `Knowledge/glossary.md`
 3. Inspect the relevant area of `Research/`, `Knowledge/`, or `Outputs/`
 4. Use the existing taxonomy before creating new categories
