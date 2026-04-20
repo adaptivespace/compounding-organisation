@@ -1,1 +1,1 @@
-# compounding-organisation
+# The Compounding Organisation
