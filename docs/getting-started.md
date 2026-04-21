@@ -26,11 +26,75 @@ Claude will read `CLAUDE.md` automatically and understand its role as knowledge 
 
 **3. Populate `Knowledge/glossary.md`.**
 
-The glossary is intentionally empty. Add your organisation's canonical terms before you begin ingesting material — this ensures consistent vocabulary across all notes from the start. Even five to ten terms is enough to begin.
+The glossary is intentionally empty. You can seed it with your organisation's canonical terms if you want to start with a preferred vocabulary, but you do not have to. If you skip this step, `/ingest` will update `Knowledge/glossary.md` automatically when new terms appear or definitions sharpen.
 
 **4. Add business context to `Context/`.**
 
 The `Context/` folder holds information that shapes how the agent writes: your writing style, audience, and any standing constraints. A `styleguide.md` is already included as a starting point. Edit or replace it to reflect your organisation's voice.
+
+## Try The Demo Flow
+
+The fastest way to understand how this repository works is to ingest one of the bundled examples.
+
+Start with the synthetic market report in `Research/Market/Evidence/2026-04-21 - Synthetic Market Report - Knowledge Operations Platforms.md`.
+
+Run:
+
+```bash
+/ingest "@Research/Market/Evidence/2026-04-21 - Synthetic Market Report - Knowledge Operations Platforms.md"
+```
+
+What to look for after ingest:
+
+- `Knowledge/Insights/Market/` gets a synthesized market insight note based on the report
+- `Knowledge/glossary.md` may be updated automatically if the report introduces terms worth canonizing
+- linked notes elsewhere in `Knowledge/` may be updated when the insight meaningfully informs them
+
+This is the main demo flow for the repository: evidence in `Research/`, synthesis in `Knowledge/Insights/`, and linked organisational knowledge on top.
+
+After that, ingest the synthetic discovery call in `Research/Customer/Evidence/2026-04-21 - Synthetic Discovery Call - ACME Inc.md`.
+
+Run:
+
+```bash
+/ingest "@Research/Customer/Evidence/2026-04-21 - Synthetic Discovery Call - ACME Inc.md"
+```
+
+What to look for after ingest:
+
+- `Knowledge/Insights/Customer/` gets a synthesized customer insight note based on the call
+- `Knowledge/glossary.md` may be updated automatically if the call introduces terms worth canonizing
+- linked notes elsewhere in `Knowledge/` may be updated when the customer insight meaningfully informs them
+
+This gives you a second example of the same pattern using customer discovery evidence.
+
+Once you have both the market and customer examples ingested, try an `/ask` flow that combines them.
+
+Run:
+
+```bash
+/ask based on the latest market insights, and customer pain points, what are the key problems in the space and how are different competitors addressing those?
+```
+
+What to expect:
+
+- the agent reads from `Knowledge/` first rather than returning to raw research by default
+- it should combine the latest notes in `Knowledge/Insights/Market/` and `Knowledge/Insights/Customer/`
+- it should synthesize the major problems in the category, compare those to the customer pain points in the discovery call, and summarize the main competitor response patterns
+
+If you want that answer turned into a document, follow it with an `/output` request.
+
+Run:
+
+```bash
+/output write a memo on the key problems in the knowledge operations space, how customer pain points map to them, and how different competitors are addressing those problems
+```
+
+What to expect:
+
+- the agent uses the curated knowledge created by the earlier ingests
+- it writes a memo into `Outputs/Memos/`
+- the result is a saved document rather than only an in-chat answer
 
 ## How the knowledge base is structured
 
@@ -39,16 +103,20 @@ Three layers, one direction of flow:
 | Layer | Folder | Purpose |
 |---|---|---|
 | Source material | `Research/` | Raw inputs: transcripts, scans, observations |
-| Curated knowledge | `Knowledge/` | Durable, linked notes distilled from Research |
+| Curated knowledge | `Knowledge/` | Synthesized insights plus linked durable knowledge |
 | Polished deliverables | `Outputs/` | Guides, memos, and reports for an audience |
 
-Raw material goes into `Research/`, where it stays as a source of reference. It can then be ingested so that it transforms into atomic notes in `Knowledge/`, and from `Knowledge/` these atomic notes can be synthesised into `Outputs/`. The agent reads the raw material in `Research/` but only edits it when you explicitly ask. Everything in `Knowledge/` and `Outputs/` is fair game.
+Raw material goes into `Research/`, where it stays as a source of reference. It can then be ingested into synthesized insight notes in `Knowledge/Insights/`. Those insights can in turn inform linked notes in the rest of `Knowledge/`, such as concepts, strategy, decisions, metrics, and playbooks. The agent reads the raw material in `Research/` but only edits it when you explicitly ask. Everything in `Knowledge/` and `Outputs/` is fair game.
 
 Within `Knowledge/`, the structure is:
 
 ```
 Knowledge/
   glossary.md                    Canonical terms — maintain this first
+  Insights/
+    Customer/                    Customer insight notes derived from evidence
+    Market/                      Market insight notes derived from evidence
+    Technology/                  Technology insight notes derived from evidence
   Foundations/
     Concepts/                    Core conceptual notes
     Strategy/                    Strategic frameworks and principles
@@ -65,7 +133,7 @@ The agent exposes six slash commands for repeatable workflows. Run them inside a
 
 | Command | When to use |
 |---|---|
-| `/ingest <source>` | You have material in `Research/` and want it distilled into `Knowledge/` |
+| `/ingest <source>` | You have material in `Research/` and want it distilled into `Knowledge/Insights/` and linked knowledge notes |
 | `/ask <question>` | You want a quick read-only answer — no file changes |
 | `/output <request>` | You want a finished memo, analysis, guide, or report in `Outputs/` |
 | `/log-decision <topic>` | You want to record a decision with full context and rationale |
@@ -75,10 +143,12 @@ The agent exposes six slash commands for repeatable workflows. Run them inside a
 
 A typical first session looks like this:
 
-1. Drop a document, interview transcript, or set of notes into the appropriate `Research/` subfolder — `Customer/`, `Market/`, `Technology/`, or `Signals/`.
-2. Run `/ingest Research/Customer/your-file.md`. The agent reads the source, extracts durable notes, updates the glossary if needed, and places notes in the correct `Knowledge/` subfolder.
-3. Run `/log-decision` to capture any decision the material informs. The agent guides you through the required fields and links the record to related notes.
-4. When you need to share findings, run `/output a memo on X`. The agent drafts from `Knowledge/` first and writes to `Outputs/Memos/`.
+1. Start with one of the example files already in `Research/`, or drop your own source material into the appropriate `Research/` subfolder — `Customer/`, `Market/`, `Technology/`, or `Signals/`.
+2. Run `/ingest` on the source. The agent reads the evidence, creates or updates synthesized insight notes in `Knowledge/Insights/`, updates the glossary automatically when needed, and links any affected knowledge notes in the appropriate `Knowledge/` subfolder.
+3. For customer discovery calls, inspect the resulting note in `Knowledge/Insights/Customer/` and compare it with the original transcript to see how the evidence was turned into structured insight.
+4. Once you have enough ingested material, run `/ask` to query the curated vault across customer, market, and other insight types.
+5. If you want the answer captured as a document, follow the query with `/output` and ask for a memo or report. The agent drafts from `Knowledge/` first and writes to `Outputs/`.
+6. Run `/log-decision` to capture any decision the material informs. The agent guides you through the required fields and links the record to the relevant insight and knowledge notes.
 
 ## Templates
 

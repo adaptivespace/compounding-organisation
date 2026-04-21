@@ -8,7 +8,7 @@ It is designed to help turn raw research and signals into durable knowledge, con
 
 The repository separates work into three layers:
 
-- `Research/` holds raw source material and intermediate synthesis
+- `Research/` holds raw source material
 - `Knowledge/` holds curated, durable notes
 - `Outputs/` holds polished guides, memos, and reports
 
@@ -34,13 +34,14 @@ See `docs/connecting-to-systems-of-record.md` for a practical integration model.
 The core workflow is:
 
 1. Capture source material in `Research/`
-2. Distill durable insights into `Knowledge/`
-3. Link concepts, strategy, decisions, metrics, and playbooks so they are discoverable
+2. Distill synthesized insights into `Knowledge/Insights/`
+3. Link concepts, strategy, decisions, metrics, and playbooks back to those insights so they are discoverable
 4. Produce polished deliverables in `Outputs/` when needed
 
 In practice:
 
 - customer, market, technology, and signal inputs begin in `Research/`
+- synthesized customer, market, and technology insights live in `Knowledge/Insights/`
 - durable concepts and strategic frames live in `Knowledge/Foundations/`
 - decisions, active context, metrics, and playbooks live in `Knowledge/Operating System/`
 - outward-facing or polished internal deliverables live in `Outputs/`
@@ -48,6 +49,7 @@ In practice:
 The boundary is intentional:
 
 - `Research/` can hold source material that informs learning
+- `Knowledge/Insights/` holds the primary synthesis layer that connects evidence to the rest of the vault
 - `Knowledge/` should hold reusable patterns, not account-by-account memory
 - operational systems should continue to own the current state of relationships, workflows, and transactions
 
@@ -58,7 +60,7 @@ The skills in `.claude/skills/` let an agent load a focused workflow only when i
 
 In practice, this means an agent can help with specific jobs such as:
 
-- ingesting source material from `Research/` into curated notes in `Knowledge/`
+- ingesting source material from `Research/` into synthesized insight notes and linked knowledge notes in `Knowledge/`
 - answering questions from the existing knowledge base
 - answering directly from the vault without changing files
 - linting the vault for placement, linking, terminology, and duplicate-note issues
@@ -67,7 +69,7 @@ In practice, this means an agent can help with specific jobs such as:
 
 Current repository skills:
 
-- `ingest/` - research ingestion and transformation into durable knowledge
+- `ingest/` - research ingestion and transformation into synthesized insights and linked knowledge
 - `ask/` - direct, read-only answers from the curated vault
 - `output/` - knowledge-base-first memos, analyses, guides, or reports in `Outputs/`
 - `log-decision/` - structured decision capture and supersession handling
@@ -75,7 +77,7 @@ Current repository skills:
 
 Available repository workflows include:
 
-- ingesting research into curated knowledge
+- ingesting research into insights and curated knowledge
 - querying the vault
 - answering directly from the vault without edits
 - linting and maintaining the knowledge base
@@ -93,6 +95,10 @@ Research/
 
 Knowledge/
   glossary.md
+  Insights/
+    Customer/
+    Market/
+    Technology/
   Foundations/
     Concepts/
     Strategy/
@@ -114,7 +120,8 @@ docs/
 
 ## What goes where
 
-- `Research/`: raw notes, transcripts, reports, scans, experiments, and intermediate insights
+- `Research/`: raw notes, transcripts, reports, scans, and experiments
+- `Knowledge/Insights/`: synthesized customer, market, and technology insights derived from source material in `Research/`
 - `Knowledge/Foundations/Concepts/`: durable concepts and mental models
 - `Knowledge/Foundations/Strategy/`: enduring strategic choices like ICP, positioning, and long-term bets
 - `Knowledge/Operating System/Active Context/`: what is true right now for the current phase, initiative, or period
@@ -126,6 +133,7 @@ docs/
 Rule of thumb:
 
 - `Research/` is exploratory and source-oriented
+- `Knowledge/Insights/` is the synthesized bridge between evidence and the rest of the knowledge base
 - `Knowledge/` is curated and durable
 - `Outputs/` is polished and audience-ready
 
@@ -147,7 +155,7 @@ Most curated notes should use frontmatter like:
 ```yaml
 ---
 title: <page title>
-type: concept | strategy | active-context | decision-record | metric | playbook | memo | guide | report
+type: insight | concept | strategy | active-context | decision-record | metric | playbook | memo | guide | report
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 sources: []
@@ -186,4 +194,4 @@ Start here:
 3. Inspect the relevant area of `Research/`, `Knowledge/`, or `Outputs/`
 4. Use the existing taxonomy before creating new categories
 
-Treat `Research/` as source material by default. Make durable updates in `Knowledge/`. Create deliverables in `Outputs/` only when needed.
+Treat `Research/` as source material by default. Capture synthesis in `Knowledge/Insights/`, update the rest of `Knowledge/` when those insights meaningfully inform it, and create deliverables in `Outputs/` only when needed.

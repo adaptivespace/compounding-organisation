@@ -26,17 +26,19 @@ Create a polished deliverable grounded in the curated vault, using `Research/` o
    - Guides go in `Outputs/Guides/`
    - Memos go in `Outputs/Memos/`
    - Reports go in `Outputs/Reports/`
+ 
+2. Check if there's a relevant template in `Templates/` that you can use to shape the content. If so, use it.
 
-2. Read the relevant notes in `Knowledge/` first.
+3. Read the relevant notes in `Knowledge/` first.
 
-3. Read source material in `Research/` only if needed to fill gaps or verify details.
+4. Read source material in `Research/` only if needed to fill gaps or verify details.
 
-4. Draft the deliverable.
+5. Draft the deliverable.
    - Follow any applicable instructions in `Context/`.
    - Keep the output consistent with the repository's terminology.
    - Link back to relevant notes when useful for navigation.
 
-5. If the drafting process reveals durable knowledge that belongs in `Knowledge/`, update the relevant notes before or alongside the deliverable.
+6. If the drafting process reveals durable knowledge that belongs in `Knowledge/`, update the relevant notes before or alongside the deliverable.
 
 ## Rules
 
