@@ -29,12 +29,24 @@ Do not use this repository for:
 - private notes, personal notes, or people profiles
 - raw transcripts, raw call notes, or unredacted source material
 - client-specific, employer-specific, or relationship-specific context
+- CRM-style records such as contacts, accounts, deal histories, activity logs, or account plans
+- system-of-record data that changes frequently and is already owned by another tool
 - routine knowledge-note edits that do not change the repo's structure, workflows, or conventions
 - idea fragments that depend on private context to make sense
 - generic productivity advice or a broad digital garden of loosely related thoughts
 - speculative templates or examples that do not solve a clear problem in the repository
 
 When in doubt, exclude first.
+
+## Why these exclusions exist
+
+This repository is meant to stay public-safe, forkable, and structurally reusable.
+
+- Relationship-specific history belongs in the relevant system of record, not in a reusable repository template.
+- Volatile operational state creates maintenance noise and weakens the durability of the knowledge base.
+- The repository should capture reusable learning, not duplicate records that already belong to CRM, support, finance, HR, or project tools.
+
+In practice, this means customer transcripts and notes may inform examples, workflows, and structural guidance, but the repository should not become the place where someone checks the latest state of a contact, account, or deal.
 
 ## Before opening an issue or PR
 
@@ -105,6 +117,11 @@ Use the repository structure deliberately:
 - `examples/` for worked examples and reference patterns
 - `templates/` for reusable authoring or contribution templates
 - `Knowledge/` for structural conventions, folder guidance, and system-level reference pages
+
+For example:
+
+- guidance on integrating this engine with CRM or other operational tools belongs in `docs/`
+- actual CRM records or account histories do not belong in the repository
 
 If a contribution does not clearly fit one of those purposes, it probably does not belong yet.
 

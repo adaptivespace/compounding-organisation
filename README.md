@@ -14,6 +14,21 @@ The repository separates work into three layers:
 
 The goal is to make knowledge reusable over time rather than trapped in one-off notes, chats, or documents.
 
+## What this is not
+
+This repository is not a general-purpose operating system for every kind of organisational data.
+
+- It is not a CRM for managing contacts, accounts, opportunities, activities, or relationship history.
+- It is not a system of record for person-level or company-level operational state.
+- It is not a safe default location for people profiles, account plans, private customer memory, or relationship-specific context.
+- It is not a replacement for project management, ticketing, support, finance, or HR systems.
+
+The rationale is simple: this repository is optimized for compounding knowledge, not for volatile operational state. The question this repository should answer is usually "what are we learning that should remain useful across cycles?" rather than "what happened last with this specific person or account?"
+
+That means customer call transcripts may begin in `Research/` as source material, but the durable output here should be reusable insight such as recurring pains, buying triggers, objections, language patterns, strategic implications, and operating decisions. Relationship memory such as "what was last discussed with person X at company Y?" belongs in the relevant external system of record.
+
+See `docs/connecting-to-systems-of-record.md` for a practical integration model.
+
 ## How it works
 
 The core workflow is:
@@ -29,6 +44,12 @@ In practice:
 - durable concepts and strategic frames live in `Knowledge/Foundations/`
 - decisions, active context, metrics, and playbooks live in `Knowledge/Operating System/`
 - outward-facing or polished internal deliverables live in `Outputs/`
+
+The boundary is intentional:
+
+- `Research/` can hold source material that informs learning
+- `Knowledge/` should hold reusable patterns, not account-by-account memory
+- operational systems should continue to own the current state of relationships, workflows, and transactions
 
 ### Powered by agentic workflows
 This repository is designed to be curated by agents as well as humans.
@@ -107,6 +128,11 @@ Rule of thumb:
 - `Research/` is exploratory and source-oriented
 - `Knowledge/` is curated and durable
 - `Outputs/` is polished and audience-ready
+
+Another useful rule of thumb:
+
+- if it is specific to one person, one company, one deal, or one live workflow, it probably belongs in another system
+- if it captures a reusable pattern, insight, decision, metric definition, or repeatable practice, it likely belongs here
 
 ## Writing conventions
 
