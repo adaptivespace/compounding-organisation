@@ -22,14 +22,11 @@ Ownership boundaries:
 ## Directory Structure
 
 ```
-Research/                      Source material and raw inputs
-  Customer/                    Customer research and notes
-  Market/                      Market research and scans
-  Signals/                     Signals, observations, and weak indicators
-  Technology/                  Technology research and technical inputs
 
 Knowledge/                     Curated knowledge base
+  index.md                     Master catalog (first stop for navigation)
   glossary.md                  Canonical terms and definitions
+  log.md                       Append-only log for audit purposes
   Insights/                    Synthesized insights derived from research evidence
     Customer/                  Customer insight notes
     Market/                    Market insight notes
@@ -42,6 +39,12 @@ Knowledge/                     Curated knowledge base
     Decision Records/          Durable decisions and rationale
     Metrics/                   Measures, scorecards, and KPIs
     Playbooks/                 Repeatable operating procedures
+
+Research/                      Source material and raw inputs
+  Customer/                    Customer research and notes
+  Market/                      Market research and scans
+  Signals/                     Signals, observations, and weak indicators
+  Technology/                  Technology research and technical inputs
 
 Outputs/                       Polished deliverables
   Guides/                      How-to and explanatory outputs
@@ -69,9 +72,10 @@ If a new category becomes necessary, add it under the closest fitting parent fol
 
 Core reference pages:
 
+- `Knowledge/index.md` is the navigation spine.
 - `Knowledge/glossary.md` is the canonical vocabulary.
+- `Knowledge/log.md` is the audit trail (append-only).
 - Folder-level `README.md` files define or introduce a section when present.
-- `AGENTS.md` is the operational guide for maintaining the vault.
 
 ## Formatting Standards
 
@@ -135,31 +139,55 @@ Load these skills only when the task matches the workflow. Keep this file focuse
 
 ### Ingest
 
-Trigger: user says `ingest <source>` or asks you to process material from `Research/`.
+Trigger: user says `ingest <source>` (file, URL, or pointer to something in `Research/`), or invokes the `/ingest` skill directly.
 
-- Lazy-load and follow `.claude/skills/ingest/SKILL.md`.
-- Core expectation: read from `Research/`, update or create synthesized insight notes in `Knowledge/Insights/`, update linked knowledge notes when warranted, update `Knowledge/glossary.md` when needed, and do not create deliverables in `Outputs/` unless explicitly requested.
+The full workflow is codified in `.claude/skills/ingest/SKILL.md`. Use `/ingest <source>` to run it.
+
+Steps:
+
+1. Read the source material.
+2. Extract durable concepts, mental models, people, trends, and market insights.
+3. Ask clarifying questions about what you extracted if there's any ambiguity.
+4. Update existing notes first; create new notes only when the idea does not fit.
+5. Update `Knowledge/glossary.md` if new terms appear or definitions sharpen.
+6. Update `Knowledge/index.md` to include any new notes and keep categories accurate.
+7. Append an entry at the end to `Knowledge/log.md`:
+
+```
+## [YYYY-MM-DD] ingest | <source title>
+
+Notes created: ...
+Notes updated: ...
+Key additions: ...
+```
 
 ### Query
 
-- Lazy-load and follow `.claude/skills/query/SKILL.md` for questions that may also produce reusable note updates.
-- Use `.claude/skills/ask/SKILL.md` for read-only answers that should not change files.
-- Core expectation: consult `Knowledge/` first and answer from the vault rather than improvising.
+1. Lazy-load and follow `.claude/skills/query/SKILL.md` for questions that may also produce reusable note updates.
+2. Use `.claude/skills/ask/SKILL.md` for read-only answers that should not change files.
+3. Core expectation: consult `Knowledge/` first and answer from the vault rather than improvising.
 
 ### Lint / Maintenance
 
-- Lazy-load and follow `.claude/skills/lint/SKILL.md`.
-- Core expectation: make incremental, low-risk fixes focused on placement, links, terminology, duplicates, and stale placeholders.
+1. Lazy-load and follow `.claude/skills/lint/SKILL.md`.
+2. Core expectation: make incremental, low-risk fixes focused on placement, links, terminology, duplicates, and stale placeholders.
 
 ### Polished Outputs
 
-- Lazy-load and follow `.claude/skills/output/SKILL.md` when the user asks for a memo, guide, report, or other polished deliverable.
-- Core expectation: ground deliverables in `Knowledge/` first, then use `Research/` as supporting source material when needed.
+1. Lazy-load and follow `.claude/skills/output/SKILL.md` when the user asks for a memo, guide, report, or other polished deliverable.
+2. Core expectation: ground deliverables in `Knowledge/` first, then use `Research/` as supporting source material when needed.
 
 ### Decision Logging
 
-- Lazy-load and follow `.claude/skills/log-decision/SKILL.md` when the user wants to record a decision or extract one from a meeting transcript.
-- Core expectation: use the decision record template, ensure all required fields are captured, and update earlier decisions when one is superseded.
+1. Lazy-load and follow `.claude/skills/log-decision/SKILL.md` when the user wants to record a decision or extract one from a meeting transcript.
+2. Core expectation: use the decision record template, ensure all required fields are captured, and update earlier decisions when one is superseded.
+3. Append a log entry
+```
+## [YYYY-MM-DD] decision | <log summary>
+
+Decision log: <wiki-link to decision log>
+```
+
 
 ## Writing Style
 

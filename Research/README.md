@@ -12,13 +12,11 @@ This folder holds raw research material and intermediate synthesis before it is 
 Each major research area may use this pattern:
 
 - `Evidence/` - raw source material such as notes, transcripts, reports, datasets, references, or experiments
-- `Insights/` - synthesized takeaways derived from the evidence
 
 ## Usage
 
 - Store source material in the appropriate research area under `Evidence/`
-- Capture intermediate synthesis in `Insights/`
-- Promote durable concepts, strategy, decisions, metrics, and playbooks into `Knowledge/` when they are stable enough to become part of the curated vault
+- Ingest source material to transform it into insights and knowledge
 
 ## Rule of thumb
 
