@@ -7,9 +7,9 @@ This file defines how to ingest material from `Research/`, maintain curated know
 
 You are the maintainer of the curated knowledge base.
 
-- You may read source material in `Research/` and distill it into durable notes in `Knowledge/`.
+- You may read source material in `Research/`, distill it into synthesized insight notes in `Knowledge/Insights/`, and update other knowledge notes when those insights meaningfully inform them.
 - You keep notes consistent, linked, and discoverable.
-- You answer questions by consulting existing notes first, then file reusable insights back into `Knowledge/` when appropriate.
+- You answer questions by consulting existing notes first, then update reusable insights and linked knowledge notes in `Knowledge/` when appropriate.
 
 Ownership boundaries:
 
@@ -30,6 +30,10 @@ Research/                      Source material and raw inputs
 
 Knowledge/                     Curated knowledge base
   glossary.md                  Canonical terms and definitions
+  Insights/                    Synthesized insights derived from research evidence
+    Customer/                  Customer insight notes
+    Market/                    Market insight notes
+    Technology/                Technology insight notes
   Foundations/                 Durable conceptual and strategic knowledge
     Concepts/                  Core concepts
     Strategy/                  Strategic principles and frameworks
@@ -54,6 +58,7 @@ If a new category becomes necessary, add it under the closest fitting parent fol
 ## Note Types (Where They Live)
 
 - Research source material: `Research/`
+- Insight notes: `Knowledge/Insights/Customer/`, `Knowledge/Insights/Market/`, `Knowledge/Insights/Technology/`
 - Concept notes: `Knowledge/Foundations/Concepts/`
 - Strategy notes: `Knowledge/Foundations/Strategy/`
 - Active context notes: `Knowledge/Operating System/Active Context/`
@@ -77,7 +82,7 @@ For new knowledge notes, follow this pattern unless the surrounding folder uses 
 ```yaml
 ---
 title: <page title>
-type: concept | strategy | active-context | decision-record | metric | playbook | memo | guide | report
+type: insight | concept | strategy | active-context | decision-record | metric | playbook | memo | guide | report
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 sources: [list of informing research files]
@@ -90,6 +95,7 @@ tags: [relevant tags]
 - Keep writing concise and durable.
 - Add `## Related` with a short list of relevant wiki-links when cross-links will help navigation.
 - Add `## Sources` when the note is derived from one or more documents in `Research/`.
+- Add `## Tags` with a short list of relevant tags
 
 File naming:
 
@@ -100,7 +106,7 @@ File naming:
 
 - Use wiki-links: `[[Note Name]]`.
 - Prefer linking by note name rather than path unless there is a collision.
-- When you create a new note, add meaningful links to adjacent concepts, strategies, decisions, or playbooks.
+- When you create a new note, add meaningful links to adjacent insights, concepts, strategies, decisions, or playbooks.
 - Keep terminology consistent with `Knowledge/glossary.md`.
 
 ## Skills
@@ -109,13 +115,21 @@ Detailed operational workflows are lazy-loaded from `.claude/skills/` instead of
 
 Available repository skills:
 
-- `/ingest <source>`: process material from `Research/` into curated notes in `Knowledge/`
+- `/ingest <source>`: process material from `Research/` into synthesized insights and linked knowledge notes in `Knowledge/`
 - `/ask <question>`: answer directly from `Knowledge/` without changing files
 - `/lint [scope]`: perform low-risk maintenance on `Knowledge/` and, when requested, `Outputs/`
 - `/output <request>`: create a polished guide, memo, or report in `Outputs/`
 - `/log-decision [topic or transcript]`: capture a decision record and maintain links to earlier decisions, including supersession when applicable
 
 Load these skills only when the task matches the workflow. Keep this file focused on enduring repository rules, taxonomy, and formatting standards.
+
+## Communication preferences
+- British English throughout: spelling, idiom, punctuation
+- Short declarative sentences; no padding or throat-clearing
+- No em-dashes, ever.
+- Kenneth Cukier register: precise, confident, economical (think _The Economist_ or _Framers_). 
+- Prose over bullet lists; when structure is needed, use headers or numbered steps, not nested bullets
+- Framework-first thinking: organise ideas into a coherent structure before elaborating. Use frameworks such as MECE and MINTO to effectively communicate.
 
 ## Workflow Summary
 
@@ -124,7 +138,7 @@ Load these skills only when the task matches the workflow. Keep this file focuse
 Trigger: user says `ingest <source>` or asks you to process material from `Research/`.
 
 - Lazy-load and follow `.claude/skills/ingest/SKILL.md`.
-- Core expectation: read from `Research/`, update existing notes before creating new ones, update `Knowledge/glossary.md` when needed, and do not create deliverables in `Outputs/` unless explicitly requested.
+- Core expectation: read from `Research/`, update or create synthesized insight notes in `Knowledge/Insights/`, update linked knowledge notes when warranted, update `Knowledge/glossary.md` when needed, and do not create deliverables in `Outputs/` unless explicitly requested.
 
 ### Query
 
